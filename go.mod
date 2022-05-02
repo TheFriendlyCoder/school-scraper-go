@@ -1,3 +1,3 @@
-module github.com/thefriendlycoder/school-scraper-go
+module github.com/thefriendlycoder/schoolscraper
 
 go 1.18
