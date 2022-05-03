@@ -14,6 +14,7 @@ type school struct {
 	message    string
 }
 
+//
 func ScrapeSchools(body string) []school {
 	doc, err := html.Parse(strings.NewReader(body))
 	if err != nil {
