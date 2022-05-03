@@ -1,7 +1,6 @@
 package schoolscraper
 
 import (
-	"fmt"
 	"strings"
 
 	"golang.org/x/net/html"
@@ -41,17 +40,11 @@ func ScrapeSchools(body string) []school {
 						}
 					}
 					if header {
-						continue
+						return
 					}
 					rowData[counter] = d.Data
 				}
-				if header {
-					continue
-				}
 				counter++
-			}
-			if header {
-				return
 			}
 			if counter != 5 {
 				panic("Failed to parse school data")
@@ -65,7 +58,6 @@ func ScrapeSchools(body string) []school {
 			}
 
 			retval = append(retval, temp)
-			fmt.Println(temp)
 
 		}
 		for c := n.FirstChild; c != nil; c = c.NextSibling {

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestParser(t *testing.T) {
+func TestBasicParsing(t *testing.T) {
 	dat, err := os.ReadFile("sample.html")
 	if err != nil {
 		panic(err)
