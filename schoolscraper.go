@@ -1,3 +1,4 @@
+// schoolscraper Friendly interface for parsing school closure data from various websites
 package schoolscraper
 
 import (
@@ -6,6 +7,7 @@ import (
 	"golang.org/x/net/html"
 )
 
+// Status information describing a school and the status of its buses and availability
 type school struct {
 	district   string
 	name       string
@@ -14,7 +16,11 @@ type school struct {
 	message    string
 }
 
-//
+// URL where School closure information can be retrieved
+const ScheduleURL = "https://bp.nbed.nb.ca/notices/BPRFtbl.aspx?dst=dsfs&amp;vtbl=1"
+
+// Entrypoint method that parses school data from a web URL and returns the status
+// information back to the caller in a digestible form
 func ScrapeSchools(body string) []school {
 	doc, err := html.Parse(strings.NewReader(body))
 	if err != nil {
