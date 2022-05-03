@@ -27,5 +27,5 @@ jobs:
         run: echo Skipping publishing of release
       - run: echo "Event is ${{ github.event_name }} and type is ${{ github.ref_type }}"
       - name: Deploy Release
-        if: ${{ github.event_name == 'create' && github.ref_type == 'tag' }}
+        if: ${{ github.event_name == 'push' && github.ref_type == 'tag' }}
         run: GOPROXY=proxy.golang.org go list -m github.com/${{ github.repository }}@$GITHUB_REF_NAME
