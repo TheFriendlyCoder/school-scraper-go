@@ -2,13 +2,14 @@
 package schoolscraper
 
 import (
+	"errors"
 	"strings"
 
 	"golang.org/x/net/html"
 )
 
 // Status information describing a school and the status of its buses and availability
-type school struct {
+type School struct {
 	district   string
 	name       string
 	openstatus string
@@ -21,16 +22,16 @@ const ScheduleURL = "https://bp.nbed.nb.ca/notices/BPRFtbl.aspx?dst=dsfs&amp;vtb
 
 // Entrypoint method that parses school data from a web URL and returns the status
 // information back to the caller in a digestible form
-func ScrapeSchools(body string) []school {
+func ScrapeSchools(body string) ([]School, error) {
 	doc, err := html.Parse(strings.NewReader(body))
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	var retval []school
+	var retval []School
 
-	var parseSchoolData func(*html.Node)
-	parseSchoolData = func(n *html.Node) {
+	var parseSchoolData func(*html.Node) error
+	parseSchoolData = func(n *html.Node) error {
 		if n.Type == html.ElementNode && n.Data == "tr" {
 			var rowData [5]string
 			var counter = 0
@@ -47,16 +48,16 @@ func ScrapeSchools(body string) []school {
 						}
 					}
 					if header {
-						return
+						return nil
 					}
 					rowData[counter] = d.Data
 				}
 				counter++
 			}
 			if counter != 5 {
-				panic("Failed to parse school data")
+				return errors.New("Failed to parse school data")
 			}
-			temp := school{
+			temp := School{
 				district:   rowData[0],
 				name:       rowData[1],
 				openstatus: rowData[2],
@@ -70,7 +71,8 @@ func ScrapeSchools(body string) []school {
 		for c := n.FirstChild; c != nil; c = c.NextSibling {
 			parseSchoolData(c)
 		}
+		return nil
 	}
-	parseSchoolData(doc)
-	return retval
+	err = parseSchoolData(doc)
+	return retval, err
 }

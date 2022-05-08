@@ -11,7 +11,10 @@ func TestBasicParsing(t *testing.T) {
 		panic(err)
 	}
 
-	schools := ScrapeSchools(string(dat))
+	schools, err := ScrapeSchools(string(dat))
+	if err != nil {
+		t.Errorf("Parsing should not have failed: %v", err)
+	}
 
 	expected := "BAIE-SAINTE-ANNE"
 	if schools[0].district != expected {
