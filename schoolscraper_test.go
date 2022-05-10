@@ -17,8 +17,8 @@ func TestBasicParsing(t *testing.T) {
 	}
 
 	expected := "BAIE-SAINTE-ANNE"
-	if schools[0].district != expected {
-		t.Errorf("First district should be %s: %s", expected, schools[0].district)
+	if schools[0].District != expected {
+		t.Errorf("First district should be %s: %s", expected, schools[0].District)
 	}
 	expected_count := 37
 	if len(schools) != expected_count {
@@ -38,10 +38,10 @@ func TestLookupOpenSchool(t *testing.T) {
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
-	if result.name != expectedSchoolName {
-		t.Errorf("Expected school name: %s Actual name: %s", expectedSchoolName, result.name)
+	if result.Name != expectedSchoolName {
+		t.Errorf("Expected school name: %s Actual name: %s", expectedSchoolName, result.Name)
 	}
-	if result.district != expectedDistrict {
-		t.Errorf("Expected district name: %s Actual name: %s", expectedDistrict, result.district)
+	if result.District != expectedDistrict {
+		t.Errorf("Expected district name: %s Actual name: %s", expectedDistrict, result.District)
 	}
 }

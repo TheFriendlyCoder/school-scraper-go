@@ -11,11 +11,11 @@ import (
 
 // Status information describing a school and the status of its buses and availability
 type School struct {
-	district   string
-	name       string
-	openstatus string
-	busstatus  string
-	message    string
+	District   string
+	Name       string
+	OpenStatus string
+	BusStatus  string
+	Message    string
 }
 
 // URL where School closure information can be retrieved
@@ -59,11 +59,11 @@ func ScrapeSchools(body string) ([]School, error) {
 				return errors.New("failed to parse school data")
 			}
 			temp := School{
-				district:   rowData[0],
-				name:       rowData[1],
-				openstatus: rowData[2],
-				busstatus:  rowData[3],
-				message:    rowData[4],
+				District:   rowData[0],
+				Name:       rowData[1],
+				OpenStatus: rowData[2],
+				BusStatus:  rowData[3],
+				Message:    rowData[4],
 			}
 
 			retval = append(retval, temp)
@@ -86,7 +86,7 @@ func GetSchoolStatus(html string, districtName string, schoolName string) (Schoo
 		return School{}, err
 	}
 	for _, school := range parsedData {
-		if school.name == schoolName && school.district == districtName {
+		if school.Name == schoolName && school.District == districtName {
 			return school, nil
 		}
 	}
