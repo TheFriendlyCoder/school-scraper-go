@@ -18,6 +18,31 @@ type School struct {
 	Message    string
 }
 
+func (r *School) IsOpen() bool {
+	return r.OpenStatus == "Ouvert"
+}
+func (r *School) IsClosed() bool {
+	return r.OpenStatus != "Ouvert"
+}
+func (r *School) HasLateBuses() bool {
+	return r.BusStatus != "À l’heure"
+}
+func (r *School) AllBusesOnTime() bool {
+	return r.BusStatus == "À l’heure"
+}
+
+// Constructs new instances of the School struct using data parsed
+// from HTML table data scraped from the school website
+func NewSchool(rowData [5]string) School {
+	return School{
+		District:   rowData[0],
+		Name:       rowData[1],
+		OpenStatus: rowData[2],
+		BusStatus:  rowData[3],
+		Message:    rowData[4],
+	}
+}
+
 // URL where School closure information can be retrieved
 const ScheduleURL = "https://bp.nbed.nb.ca/notices/BPRFtbl.aspx?dst=dsfs&amp;vtbl=1"
 
@@ -58,13 +83,7 @@ func ScrapeSchools(body string) ([]School, error) {
 			if counter != 5 {
 				return errors.New("failed to parse school data")
 			}
-			temp := School{
-				District:   rowData[0],
-				Name:       rowData[1],
-				OpenStatus: rowData[2],
-				BusStatus:  rowData[3],
-				Message:    rowData[4],
-			}
+			temp := NewSchool(rowData)
 
 			retval = append(retval, temp)
 
