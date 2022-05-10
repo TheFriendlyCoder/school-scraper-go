@@ -3,6 +3,7 @@ package schoolscraper
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 
 	"golang.org/x/net/html"
@@ -55,7 +56,7 @@ func ScrapeSchools(body string) ([]School, error) {
 				counter++
 			}
 			if counter != 5 {
-				return errors.New("Failed to parse school data")
+				return errors.New("failed to parse school data")
 			}
 			temp := School{
 				district:   rowData[0],
@@ -75,4 +76,20 @@ func ScrapeSchools(body string) ([]School, error) {
 	}
 	err = parseSchoolData(doc)
 	return retval, err
+}
+
+// Loads data for a specific school from HTML content scraped from
+// the schools website
+func GetSchoolStatus(html string, districtName string, schoolName string) (School, error) {
+	parsedData, err := ScrapeSchools(html)
+	if err != nil {
+		return School{}, err
+	}
+	for _, school := range parsedData {
+		if school.name == schoolName && school.district == districtName {
+			return school, nil
+		}
+	}
+	msg := fmt.Sprintf("school %s in district %s not found", schoolName, districtName)
+	return School{}, errors.New(msg)
 }
