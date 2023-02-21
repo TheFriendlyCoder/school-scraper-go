@@ -1,0 +1,905 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+<head><!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-107185318-1', 'auto');
+ga('send', 'pageview');</script>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>
+	BusPlanner Web - BusPlanner Web
+</title><link rel="shortcut icon" href="favicon.ico?v=v109248" type="image/x-icon" /><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=v109248" /><link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=v109248" /><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=v109248" /><link rel="manifest" href="site.webmanifest?v=v109248" /><link rel="mask-icon" href="safari-pinned-tab.svg?v=v109248" /><meta name="msapplication-TileColor" content="#da532c" /><meta name="theme-color" content="#ffffff" /><script src="/Scripts/jquery-3.3.1.js"></script>
+<script src="/Scripts/umd/popper.js"></script>
+<script src="/Scripts/bootstrap.bundle.js"></script>
+<script src="/Scripts/summernote-bs4.js"></script>
+<script src="/Scripts/summernote-fr-CA.js"></script>
+<script src="/Scripts/Chart.js"></script>
+<script src="/Scripts/jquery.cookie.js"></script>
+<script src="/Scripts/select2.js"></script>
+<script src="/Scripts/modernizr-2.8.3.js"></script>
+<script src="/Scripts/moment.js"></script>
+<link href="/Content/DataTables-1.10.18/css/dataTables.bootstrap4.css" rel="stylesheet"/>
+<link href="/Content/DataTables-1.10.18/css/responsive.bootstrap4.css" rel="stylesheet"/>
+<link href="/Content/DataTables-1.10.18/css/dataTables.jqueryui.css" rel="stylesheet"/>
+<link href="/Content/DataTables-1.10.18/css/select.dataTables.css" rel="stylesheet"/>
+<link href="/Content/DataTables-1.10.18/css/jquery.dataTables.css" rel="stylesheet"/>
+<link href="/Content/DataTables-1.10.18/css/buttons.dataTables.css" rel="stylesheet"/>
+<link href="/Content/DataTables-1.10.18/css/dataTables.checkboxes.css" rel="stylesheet"/>
+<link href="/Content/dataTables.css" rel="stylesheet"/>
+<link href="/Content/normalize.css" rel="stylesheet"/>
+<link href="/Content/themes/jquery-ui-1.11.4.css" rel="stylesheet"/>
+<link href="/Content/jquery-confirm.css" rel="stylesheet"/>
+<link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/all.css" rel="stylesheet"/>
+<link href="/Content/jquery.datetimepicker.css" rel="stylesheet"/>
+<link href="/Content/summernote-bs4.css" rel="stylesheet"/>
+<link href="/Content/Chart.css" rel="stylesheet"/>
+<link href="/Content/css/select2.css" rel="stylesheet"/>
+<link href="/Content/css/select2-bootstrap4.css" rel="stylesheet"/>
+<link href="/Content/Site.css" rel="stylesheet"/>
+<link href="/Content/Custom.css" rel="stylesheet"/>
+
+    
+        <script type="text/javascript">
+            function doPost(eventTarget, eventArgument)
+            {
+                __doPostBack(eventTarget, eventArgument);
+                theForm.__EVENTTARGET.value = "";
+                theForm.__EVENTARGUMENT.value = "";
+            }
+            //onloadRecaptchaCallback() will change to this name
+            function onloadRecaptchaCallback()
+            {
+                var r = $('#hfResetCaptcha');
+                if (r && r.val() == 'true') {
+                    try {
+                        grecaptcha.reset();
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                }
+                var recaptha = $('#recaptcha');
+                if (recaptha) {
+                    try {
+                        grecaptcha.render('recaptcha', {
+                            'sitekey': '6LeWPxQUAAAAAK6J8gj8cVjJXH4fTgJlwIkWx06a',
+                            'hl': 'fr'
+                        });
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                }
+            }
+        </script>
+    </head>
+<body>
+    <form method="post" action="./Cancellations.aspx" id="mainForm">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['mainForm'];
+if (!theForm) {
+    theForm = document.mainForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+
+<script src="/bundles/MsAjaxJs?v=D6VN0fHlwFSIWjbVzi6mZyE9Ls-4LNrSSYVGRU46XF81" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/bundles/WebFormsJs?v=N8tymL9KraMLGAMFuPycfH3pXe6uUlRXdhtYv8A_jUU1" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var PageMethods = function() {
+PageMethods.initializeBase(this);
+this._timeout = 0;
+this._userContext = null;
+this._succeeded = null;
+this._failed = null;
+}
+PageMethods.prototype = {
+_get_path:function() {
+ var p = this.get_path();
+ if (p) return p;
+ else return PageMethods._staticInstance.get_path();},
+GetGeneralNotices:function(succeededCallback, failedCallback, userContext) {
+/// <param name="succeededCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="failedCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="userContext" optional="true" mayBeNull="true"></param>
+return this._invoke(this._get_path(), 'GetGeneralNotices',true,{},succeededCallback,failedCallback,userContext); },
+GetSchoolNotifications:function(succeededCallback, failedCallback, userContext) {
+/// <param name="succeededCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="failedCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="userContext" optional="true" mayBeNull="true"></param>
+return this._invoke(this._get_path(), 'GetSchoolNotifications',true,{},succeededCallback,failedCallback,userContext); },
+GetBusNotifications:function(succeededCallback, failedCallback, userContext) {
+/// <param name="succeededCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="failedCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="userContext" optional="true" mayBeNull="true"></param>
+return this._invoke(this._get_path(), 'GetBusNotifications',true,{},succeededCallback,failedCallback,userContext); }}
+PageMethods.registerClass('PageMethods',Sys.Net.WebServiceProxy);
+PageMethods._staticInstance = new PageMethods();
+PageMethods.set_path = function(value) {
+PageMethods._staticInstance.set_path(value); }
+PageMethods.get_path = function() { 
+/// <value type="String" mayBeNull="true">The service url.</value>
+return PageMethods._staticInstance.get_path();}
+PageMethods.set_timeout = function(value) {
+PageMethods._staticInstance.set_timeout(value); }
+PageMethods.get_timeout = function() { 
+/// <value type="Number">The service timeout.</value>
+return PageMethods._staticInstance.get_timeout(); }
+PageMethods.set_defaultUserContext = function(value) { 
+PageMethods._staticInstance.set_defaultUserContext(value); }
+PageMethods.get_defaultUserContext = function() { 
+/// <value mayBeNull="true">The service default user context.</value>
+return PageMethods._staticInstance.get_defaultUserContext(); }
+PageMethods.set_defaultSucceededCallback = function(value) { 
+ PageMethods._staticInstance.set_defaultSucceededCallback(value); }
+PageMethods.get_defaultSucceededCallback = function() { 
+/// <value type="Function" mayBeNull="true">The service default succeeded callback.</value>
+return PageMethods._staticInstance.get_defaultSucceededCallback(); }
+PageMethods.set_defaultFailedCallback = function(value) { 
+PageMethods._staticInstance.set_defaultFailedCallback(value); }
+PageMethods.get_defaultFailedCallback = function() { 
+/// <value type="Function" mayBeNull="true">The service default failed callback.</value>
+return PageMethods._staticInstance.get_defaultFailedCallback(); }
+PageMethods.set_enableJsonp = function(value) { PageMethods._staticInstance.set_enableJsonp(value); }
+PageMethods.get_enableJsonp = function() { 
+/// <value type="Boolean">Specifies whether the service supports JSONP for cross domain calling.</value>
+return PageMethods._staticInstance.get_enableJsonp(); }
+PageMethods.set_jsonpCallbackParameter = function(value) { PageMethods._staticInstance.set_jsonpCallbackParameter(value); }
+PageMethods.get_jsonpCallbackParameter = function() { 
+/// <value type="String">Specifies the parameter name that contains the callback function name for a JSONP request.</value>
+return PageMethods._staticInstance.get_jsonpCallbackParameter(); }
+PageMethods.set_path("Alerts");
+PageMethods.GetGeneralNotices= function(onSuccess,onFailed,userContext) {
+/// <param name="succeededCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="failedCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="userContext" optional="true" mayBeNull="true"></param>
+PageMethods._staticInstance.GetGeneralNotices(onSuccess,onFailed,userContext); }
+PageMethods.GetSchoolNotifications= function(onSuccess,onFailed,userContext) {
+/// <param name="succeededCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="failedCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="userContext" optional="true" mayBeNull="true"></param>
+PageMethods._staticInstance.GetSchoolNotifications(onSuccess,onFailed,userContext); }
+PageMethods.GetBusNotifications= function(onSuccess,onFailed,userContext) {
+/// <param name="succeededCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="failedCallback" type="Function" optional="true" mayBeNull="true"></param>
+/// <param name="userContext" optional="true" mayBeNull="true"></param>
+PageMethods._staticInstance.GetBusNotifications(onSuccess,onFailed,userContext); }
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="2B3622A3" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="fS0pJKaP5FvoO8HShiY1gsx01nJxMYapE4LuEdv+f2OoaEaYCFZ2w/Mdb4ja+W/EFpazGgueTrT2SIkIArNPPvB6jWicOas0pqeZCIX3XR3Lph8EGzyLgqrzouJMIVfhIsBQqYkeGQXSjvV4sD82TE+1oPIOOEI8tNPrvdWrcZGBS0e8umU16xPfkUb3T9Jii7vebxj38SePOuFe0PfqMJrzAgnaMt/YVvBdtpFaXEqvw6+s/rPckuR7soA8Y7BKjORj1MkDjteMyFqmTm6WDIFhO89wNXYuCEwc1NPei9fr4nIR" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$scriptManager', 'mainForm', ['tctl00$MasterUpdate_Alerts','MasterUpdate_Alerts','tctl00$UpdatePanel_Bulletin','UpdatePanel_Bulletin'], [], [], 300, 'ctl00');
+//]]>
+</script>
+
+        <script src="/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="/Scripts/jquery-confirm.js"></script>
+<script src="/Scripts/inputmask/inputmask.js"></script>
+<script src="/Scripts/inputmask/jquery.inputmask.js"></script>
+<script src="/Scripts/jquery.datetimepicker.full.js"></script>
+
+        <script src="/Scripts/dataTables.js"></script>
+<script src="/Content/DataTables-1.10.18/js/jquery.dataTables.js"></script>
+<script src="/Content/DataTables-1.10.18/js/dataTables.bootstrap4.js"></script>
+<script src="/Content/DataTables-1.10.18/js/dataTables.responsive.js"></script>
+<script src="/Content/DataTables-1.10.18/js/responsive.bootstrap4.js"></script>
+<script src="/Content/DataTables-1.10.18/js/dataTables.foundation.js"></script>
+<script src="/Content/DataTables-1.10.18/js/dataTables.select.js"></script>
+<script src="/Content/DataTables-1.10.18/js/dataTables.checkboxes.js"></script>
+<script src="/Content/DataTables-1.10.18/js/dataTable.datetime-moment.js"></script>
+<script src="/Content/DataTables-1.10.18/js/dataTables.buttons.js"></script>
+<script src="/Content/DataTables-1.10.18/js/buttons.bootstrap4.js"></script>
+<script src="/Content/DataTables-1.10.18/js/buttons.html5.js"></script>
+<script src="/Content/DataTables-1.10.18/js/jszip.js"></script>
+<script src="/Content/DataTables-1.10.18/js/dataTables.jqueryui.js"></script>
+
+        <script src="/Scripts/jquery_jeditable/jquery.jeditable.js"></script>
+<script src="/Scripts/jquery_jeditable/jquery.jeditable.autogrow.js"></script>
+<script src="/Scripts/jquery_jeditable/jquery.jeditable.charcounter.js"></script>
+<script src="/Scripts/jquery_jeditable/jquery.jeditable.checkbox.js"></script>
+<script src="/Scripts/jquery_jeditable/jquery.jeditable.datepicker.js"></script>
+<script src="/Scripts/jquery_jeditable/jquery.jeditable.masked.js"></script>
+<script src="/Scripts/jquery_jeditable/jquery.jeditable.time.js"></script>
+<script src="/Scripts/InlineEdit.js"></script>
+
+        <script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+        <script src="/Scripts/BusPlannerWeb.js"></script>
+<script src="/Scripts/datatablesUtil.js"></script>
+
+        <script type="text/javascript">
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            if (prm != null)
+            {
+                prm.add_endRequest(EndRequestHandler);
+                prm.add_beginRequest(BeginRequestHandler);
+            }
+            else {
+                
+                 location.reload();
+            }
+
+            function BeginRequestHandler(sender, args)
+            {
+                 
+            }
+
+            function EndRequestHandler(sender, args)
+            {
+                var error = args.get_error()
+                // Verify the httpStatusCode you are receiving
+                if (args._error != undefined && args._error != null) {
+                   // alert(args._error);
+                    args.set_errorHandled = true;
+                    //location.reload();
+                }
+            }
+            
+            Type.registerNamespace('Sys.WebForms');
+            Sys.WebForms.Res = {
+                "PRM_UnknownToken": "Unknown token: \u0027{0}\u0027.",
+                "PRM_MissingPanel": "Could not find UpdatePanel with ID \u0027{0}\u0027. If it is being updated dynamically then it must be inside another UpdatePanel.",
+                "PRM_ServerError": "An unknown error occurred while processing the request on the server. The status code returned from the server was: {0}",
+                "PRM_ParserError": "The message received from the server could not be parsed.",
+                "PRM_TimeoutError": "The server request timed out.",
+                "PRM_ParserErrorDetails": "Error parsing near \u0027{0}\u0027.",
+                "PRM_CannotRegisterTwice": "The PageRequestManager cannot be initialized more than once."
+            };
+           
+        </script>
+        <input type="hidden" name="ctl00$hfApplicationRoot" id="hfApplicationRoot" value="/" />
+        <input type="hidden" name="ctl00$hfDateFormat" id="hfDateFormat" value="yy-mm-dd" />
+        <!-- The scripts are put here to ensure startup scripts are registered after they have been loaded -->
+        <header>
+        <div class="container masterPageWidth">
+            <div class="row align-items-center">
+                <div class="col-6 col-lg-8">
+                    <a href="https://francophonesud.nbed.nb.ca/" id="LogoSpotHref" title="Accueil parent" tabindex="0">
+                        <img src="Content/images/DSFS2.png" id="LogoSpot" class="img-fluid" alt="Accueil BusPlanner Web" />
+                    </a>
+                </div>
+                <div class="col-3 text-center col-lg-2 pt-1">
+                    <div id="MasterUpdate_Alerts">
+	
+                            <a href="/Alerts" class="FeatureText" data-toggle="tooltip" tabindex="0" title="Les alertes">
+                                <figure class="figure text-center d-block">
+                                    <img id="alertsImage" class="img-fluid" alt="Les alertes" src="https://dsfsbp.nbed.nb.ca/Content/images/Alerts.png" style="height:70px;" />
+                                    <figcaption class="figure-caption">
+                                        Voir les alertes                                
+                                    </figcaption>
+                                </figure>
+                            </a>
+                            
+                        
+</div>
+                </div>
+                <div class="col-3 text-center col-lg-2" style="vertical-align:top;">
+                    <ul class="nav-bar">
+                        <li id="ddmHelp_liMenu" class="nav-item dropdown" style="vertical-align:top!important;">
+        <a id="ddmHelp_hlMenuText" title="Aidez-moi" class=" dropdown-toggle " data-toggle="dropdown" onclick="MenuClick(&#39;Help&#39;,&#39;https://dsfsbp.nbed.nb.ca/&#39;);" href="#" href="Code/UserControls/#">
+           
+                <i class="fa fa-question-circle fa-4x figure"></i>
+                
+            </a>
+        
+        <div id="ddmHelp_uDropdown" class="dropdown-menu" aria-labelledby="ddmHelp_hlMenuText" role="menu">
+            
+                        <a id="ddmHelp_rMenu_hlMenuText_0" class="dropdown-item" role="menuitem" href="https://dsfsbp.nbed.nb.ca/HelpFiles/PublicsHelp/index.html" target="_blank">Public</a>
+                
+        </div>
+    </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </header>
+        <nav class="navbar navbar-expand-md topMenu navbar-dark bg-dark navbar-default" id="topNav">
+            <div class="container-fluid masterPageWidth">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapseTop" aria-controls="collapseTop" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon "></span>
+                    </button>
+                </div>
+                <!-- menu -->
+                <div class="navbar-collapse  collapse " id="collapseTop">
+                     <div class="row flex-container w-100" id="divTopMain">
+                        <ul class="nav nav-bar col-md-8 col-sm-12  menu_flex   "  >
+                            
+                                    <li id="rTopMenu_ddlTop_0_liMenu_0" class="nav-item dropdown" style="vertical-align:top!important;">
+        <a id="rTopMenu_ddlTop_0_hlMenuText_0" title="Accueil" class="menu-active nav-item" onclick="MenuClick(&#39;Home&#39;,&#39;https://dsfsbp.nbed.nb.ca/&#39;);" href="https://dsfsbp.nbed.nb.ca/default">Accueil</a>
+        
+        
+    </li>
+
+                                
+                                    <li id="rTopMenu_ddlTop_1_liMenu_1" class="nav-item dropdown" style="vertical-align:top!important;">
+        <a id="rTopMenu_ddlTop_1_hlMenuText_1" title="Données au sujet de l&#39;école" class=" nav-item" onclick="MenuClick(&#39;SchoolInformation&#39;,&#39;https://dsfsbp.nbed.nb.ca/&#39;);" href="https://dsfsbp.nbed.nb.ca/SchoolInfo">Données au sujet de l'école</a>
+        
+        
+    </li>
+
+                                
+                                    <li id="rTopMenu_ddlTop_2_liMenu_2" class="nav-item dropdown" style="vertical-align:top!important;">
+        <a id="rTopMenu_ddlTop_2_hlMenuText_2" title="Écoles admissibles" class=" nav-item" onclick="MenuClick(&#39;WhichSchoolDoIAttend&#39;,&#39;https://dsfsbp.nbed.nb.ca/&#39;);" href="https://dsfsbp.nbed.nb.ca/Eligibility">Écoles admissibles</a>
+        
+        
+    </li>
+
+                                
+                                    <li id="rTopMenu_ddlTop_3_liMenu_3" class="nav-item dropdown" style="vertical-align:top!important;">
+        <a id="rTopMenu_ddlTop_3_hlMenuText_3" title="Puis-je prendre un autobus?" class=" nav-item" onclick="MenuClick(&#39;CanIRideABus&#39;,&#39;https://dsfsbp.nbed.nb.ca/&#39;);" href="https://dsfsbp.nbed.nb.ca/TransportationEligibility">Puis-je prendre un autobus?</a>
+        
+        
+    </li>
+
+                                
+                         </ul>
+                         <ul class="nav-bar col-md-4 col-sm-12  menu_flex_login" >
+                             <li id="ddmLoginOut_liMenu" class="nav-item dropdown" style="vertical-align:top!important;">
+        <a id="ddmLoginOut_hlMenuText" title="Connexion" class=" dropdown-toggle " data-toggle="dropdown" onclick="MenuClick(&#39;LoginOut&#39;,&#39;https://dsfsbp.nbed.nb.ca/&#39;);" href="#">Connexion</a>
+        
+        <div id="ddmLoginOut_uDropdown" class="dropdown-menu" aria-labelledby="ddmLoginOut_hlMenuText" role="menu">
+            
+                        <a id="ddmLoginOut_rMenu_hlMenuText_0" class="dropdown-item" role="menuitem" href="https://dsfsbp.nbed.nb.ca/Subscriptions/ChildTransportInfo">Portail des parents</a>
+                
+                        <a id="ddmLoginOut_rMenu_hlMenuText_1" class="dropdown-item" role="menuitem" href="https://dsfsbp.nbed.nb.ca/Professional">Portail professionnel</a>
+                
+        </div>
+    </li>
+
+                         </ul>
+                     </div>
+                </div>
+            </div>
+        </nav>
+        <main>
+        <div class="container body-content">
+            <div class="row justify-content-center">
+                <div class="md-col-12">
+                    <div id="UpdatePanel_Bulletin">
+	
+                            
+                        
+</div>
+                </div>
+            </div>
+            <div id="Master_TitleRow" class="row mb-1">
+                <div class="col-12">
+                    <h1 class="PageTitle">
+                        <span id="PageTitle">Les alertes</span></h1>
+                </div>
+            </div>
+            
+     <div id="content" style="height:auto;">
+    <div class="row">
+        <div class="col-12 mt-2">
+            <span id="MainContent_lblTime" class="text-danger">Dernière mise à jour</span>:
+            <span id="MainContent_GeneralNoticeTimeStamp" class="text-danger"></span>
+        </div>
+    </div>
+     <p>
+         <span id="MainContent_GeneralNoticesMsg" class="d-none h2">Aucun avis en ce moment.</span>
+     </p>
+     <div style="display:none;" id="divGeneralNotice">
+        <div id="MainContent_divGeneralNoticeTitle" class="row">
+            <div class="col-12  mt-3">
+                <h2>
+                    <span id="MainContent_lblGeneralNotice">Avis généraux</span></h2>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-12 flex-container">
+                <table id="tAlertGeneralNotices" class="w-100 mt-2">
+                    <thead>
+                        <tr>
+                            <th class="w-2 control"></th>
+                            <th>Message</th>
+                            <th class="DataTables_sort_icon">Date de publication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="divSchoolAlerts" style="display:none;">
+        <div id="MainContent_divSchoolAlertTitle" class="row mt-3">
+            <div class="col-12">
+                <h2>
+                    <span id="MainContent_lblSchoolAlerts">Alertes d'école</span></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 flex-container">
+                <table id="tSchoolNotices" class="w-100 mt-2" >
+                    <thead>
+                        <tr>
+                            <th class="w-2 control"></th>
+                            <th>École</th>
+                            <th>Type</th>
+                            <th>Raison</th>
+                            <th>Date de publication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="divBusNotifications"  style="display:none;">
+        <div id="MainContent_divTransportationAlertTitle" class="row">
+            <div class="col-12 mt-2">
+                <h2>
+                    <span id="MainContent_lblBusNotification">Alertes de transport</span>
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 flex-container">
+                <table id="tBusNotifications" class="w-100 mt-2">
+                    <thead>
+                        <tr>
+                            <th class="w-2 control"></th>
+                            <th>Circuit</th>
+                            <th>Transporteur</th>
+                            <th>Statut</th>
+                            <th class="">Écoles concernées</th>
+                            <th class="">en raison des transferts</th>
+                            <th class="">Commentaire</th>
+                            <th>Date de publication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="MainContent_divTwitter" class="col-6 col-md-2 mt-3">
+            <span id="MainContent_TwitterScript"><a href="https://twitter.com/francophonesud"   target='_blank'><i class="fab fa-twitter fa-3x" Title="Twitter"></i></a></span>
+        </div>
+        
+    </div>
+    <input type="hidden" name="ctl00$MainContent$hfGeneralNoticesCount" id="MainContent_hfGeneralNoticesCount" value="0" />
+    <input type="hidden" name="ctl00$MainContent$hfBusNotificationsCount" id="MainContent_hfBusNotificationsCount" value="0" />
+    <input type="hidden" name="ctl00$MainContent$hfSchoolAlertsCount" id="MainContent_hfSchoolAlertsCount" value="0" />
+     </div>
+
+        </div>
+        </main>
+        <div class="mt-2"></div>
+        <footer>
+        <div class="mt-2">
+            <div class="footer pt-2 pb-1 pr-2 pl-2" id="footer">
+                <div class="row ">
+                    <div class="col-md-12 masterPageWidth">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-5 col-sm-6">
+                                    <div class="input-group input-group-sm pt-1">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text ">
+                                                <label for="_cbDatabase" id="promptDB">Année scolaire</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <span id="databaseName" class="form-control">DSF-S 2022-2023</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-2 hidden-sm-down"></div>
+                                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 text-right">
+                                    <div class="input-group input-group-sm pt-1 float-md-right">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text ">
+                                                <label for="ddlLanguages">Langue</label>
+                                            </div>
+                                        </div>
+                                        <select name="ctl00$ddlLanguages" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ddlLanguages\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlLanguages" class="form-control">
+	<option selected="selected" value="fr-CA">fran&#231;ais (Canada)</option>
+	<option value="en-CA">English (Canada)</option>
+
+</select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row masterPageWidth">
+                    <div class="col-md-12">
+                        
+                        <ul class="nav justify-content-center">
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://dsfsbp.nbed.nb.ca/About">À propos</a>
+                            </li>
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://francophonesud.nbed.nb.ca/demandes-transport/">Nous joindre</a>
+                            </li>
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://dsfsbp.nbed.nb.ca/Subscriptions/ChildTransportInfo">Portail des parents</a>
+                            </li>
+                            
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://dsfsbp.nbed.nb.ca/Professional">Portail professionnel</a>
+                            </li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row masterPageWidth">
+                <div class="col-12 mt-2  d-inline-flex">
+                    <span id="disclaimer" style="font-size: xx-small; color: #2E3B7E;">Des efforts sont déployés afin que l’information soit précise et à jour. S’il y a un écart concernant l'information fournie, celle du service de transport scolaire aura préséance. """"GEOREF"""" et """"BusPlanner Web"""" sont les marques déposées de """"GEOREF Sytems Ltée"""".</span>&nbsp;&nbsp;
+                    <a href="https://www.busplanner.com" target="_blank" onkeyup="TabToFirst();" >
+                        <img src="Content/images/BusPlanner_PoweredByFR.png" id="PoweredBy" alt="BusPlanner" class="flex-right" />
+                    </a>
+                    <small>&copy; 2023</small>
+                </div>
+            </div>
+        </div>
+
+        <div id="divSelectDatabase" class="modal fade">
+            <div id="headerSelectDatabase" class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>
+                            <span id="lblDatabase" class="modal-title">Select Database</span>
+                        </h2>
+                    </div>
+                    <div class="col-md-12 modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="cbDefaultDatabase" class="control-label">Année scolaire</label>
+                                <select name="ctl00$cbDefaultDatabase" id="cbDefaultDatabase" class="form-control">
+	<option value="5c1a9842-d006-49a9-a445-102b5ab24f89">DSF-S 2022-2023</option>
+
+</select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mt-3">
+                                <input type="button" name="ctl00$btnSaveDefaultDatabase" value="Choisir" onclick="javascript:__doPostBack(&#39;ctl00$btnSaveDefaultDatabase&#39;,&#39;&#39;)" id="btnSaveDefaultDatabase" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+    <script type="text/javascript">
+        var generalTable;
+        var schoolTable;
+        var busTable;
+       var IsGeneralNoticePostedTimeVisible = 'False';
+        IsGeneralNoticePostedTimeVisible = IsGeneralNoticePostedTimeVisible.toLowerCase();
+        if (IsGeneralNoticePostedTimeVisible === 'false') {
+            IsGeneralNoticePostedTimeVisible = false;
+        }
+        else {
+            IsGeneralNoticePostedTimeVisible = true;
+        }
+        var generalCount =0;
+        var schoolCount=0;
+        var busCount = 0;
+        var showSchoolAlerts = 'True';
+        showSchoolAlerts = showSchoolAlerts.toLowerCase();
+        var showGeneralNotices= 'True';
+        showGeneralNotices = showGeneralNotices.toLowerCase();
+        var showBusNotifications= 'True';
+        showBusNotifications = showBusNotifications.toLowerCase();
+
+        $(document).ready(function ()
+        {
+            $.ajaxSetup({ cache: false });
+
+            if (showGeneralNotices)
+                generalTable = initializeGeneralNoticeTable();
+            else
+                $('#divGeneralNotice').hide();
+
+            if (showSchoolAlerts == "true") {
+                schoolTable = initializeSchoolNotificationDataTable();
+            } else {
+                $('#divSchoolAlerts').hide();
+
+            }
+
+            if (showBusNotifications == "true")
+                busTable = initializeBusNotificationsDataTable();
+            else
+                $('#divBusNotifications').hide();
+
+            var refreshRate =  30000;
+            setInterval(function () {
+                if (showGeneralNotices)
+                    generalTable.ajax.reload(null, false);
+                if (showSchoolAlerts)
+                    schoolTable.ajax.reload(null, false);
+                if (showBusNotifications)
+                    busTable.ajax.reload(null, false);
+            }, refreshRate);
+        });
+
+        function initializeGeneralNoticeTable()
+        {
+            var urlGetGeneralNotice = 'https://dsfsbp.nbed.nb.ca//Alerts.aspx/GetGeneralNotices';
+
+            var columns = [
+                  { "data": null, defaultContent: "", orderable: false },
+                  { "data": "Message" },
+                  {
+                      "data": "PostedTimeDisplay", 'class': "DataTables_sort_icon"
+                  }
+            ];
+
+            var ajax = {
+                'url': urlGetGeneralNotice,
+                'contentType': 'application/json; charset=utf-8',
+                'type': 'GET',
+                'dataType': 'JSON',
+                'data': function (d)
+                {
+                    return d;
+                },
+                'dataSrc': function (json)
+                {
+                    try {
+                        json.draw = json.d.draw;
+                        json.recordsTotal = json.d.recordsTotal;
+                        json.recordsFiltered = json.d.recordsFiltered;
+                        json.data = json.d.data;
+                        var return_data = json;
+                        generalCount = json.d.recordsTotal;
+                        $('#MainContent_hfGeneralNoticesCount').val(generalCount);
+                        $('#MainContent_GeneralNoticeTimeStamp').text(json.d.UpdateTime);
+                        SetVisibleLabels();
+                        if (generalCount > 0)
+                        {
+                            $('#divGeneralNotice').fadeIn();
+                        }
+                        return return_data.data;
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                },
+                'cache': false,
+            };
+
+
+            var order = [[2, 'desc']];
+            
+            var setting = setupDataTableSetting('/Content/localization/French.json', true, columns, ajax, null, order, "Aucun avis en ce moment."); // this is creating some customized settings for the data table
+            setting.columnDefs = [
+                    { targets: [2], visible: IsGeneralNoticePostedTimeVisible }
+            ];
+            setting.deferRender = true;
+            setting.processing = false;
+            return SetupDataTable(setting, "tAlertGeneralNotices");
+        }
+
+        function initializeSchoolNotificationDataTable()
+        {
+            var urlSchoolNotification = 'https://dsfsbp.nbed.nb.ca//Alerts.aspx/GetSchoolNotifications';
+
+            var columns = [
+                  { "data": null, defaultContent: "", orderable: false },
+                  { "data": "School" },
+                  { "data": "AlertType" },
+                { "data": "Reason" },
+                  {
+                      "data": "PostedTimeDisplay"
+                  }
+            ];
+
+            var ajax = {
+                'url': urlSchoolNotification,
+                'contentType': 'application/json; charset=utf-8',
+                'type': 'GET',
+                'dataType': 'JSON',
+                'data': function (d)
+                {
+                    return d;
+                },
+                'dataSrc': function (json)
+                {
+                    try {
+                        json.draw = json.d.draw;
+                        json.recordsTotal = json.d.recordsTotal;
+                        json.recordsFiltered = json.d.recordsFiltered;
+                        json.data = json.d.data;
+                        var return_data = json;
+                        schoolCount = json.d.recordsTotal;
+                        $('#MainContent_hfSchoolAlertsCount').val(schoolCount);
+                        SetVisibleLabels();
+                        if (schoolCount > 0)
+                        {
+                            $('#divSchoolAlerts').fadeIn();
+                        }
+                        return return_data.data;
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                },
+                'cache': false
+            };
+
+
+            var order = [[4, 'desc']];
+             
+            var settingSchool = setupDataTableSetting('/Content/localization/French.json', true, columns, ajax, null, order, "Il n'y a pas d'alertes d'école en ce moment"); // this is creating some customized settings for the data table
+            settingSchool.deferRender = true;
+            settingSchool.processing = false;
+            schoolTable = SetupDataTable(settingSchool, "tSchoolNotices");
+            return schoolTable;
+        }
+
+        function initializeBusNotificationsDataTable()
+        {
+            var urlBusNotifications = 'https://dsfsbp.nbed.nb.ca//Alerts.aspx/GetBusNotifications';
+            var columns = [
+                  { "data": null, defaultContent: "", orderable: false },
+                  { "data": "RouteRun" },
+                  {
+                      "data": "Operator"
+                  },
+                  { "data": "Action" },
+                  { "data": "AffectsSchools" },
+                  { "data": "TransfersSchools" },
+                  { "data": "Comment" },
+                  {
+                      "data": "PostedTimeDisplay"
+                  }
+            ];
+
+            var ajax = {
+                'url': urlBusNotifications,
+                'contentType': 'application/json; charset=utf-8',
+                'type': 'GET',
+                'dataType': 'JSON',
+                'data': function (d)
+                {
+                    return d;
+                },
+                'dataSrc': function (json)
+                {
+                    try {
+                        json.draw = json.d.draw;
+                        json.recordsTotal = json.d.recordsTotal;
+                        json.recordsFiltered = json.d.recordsFiltered;
+                        json.data = json.d.data;
+                        var return_data = json;
+                        
+                         busCount = json.d.recordsTotal;
+                         $('#MainContent_hfBusNotificationsCount').val(busCount);
+                        SetVisibleLabels();
+                       if (busCount > 0)
+                        {
+                           $('#divBusNotifications').fadeIn();
+                        }
+                       return return_data.data;
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                },
+                'cache': false
+            };
+
+
+            var order = [[1, 'asc']];
+            var settingBus = setupDataTableSetting('/Content/localization/Alerts/Transportation/French.json', true, columns, ajax, null, order, "Le transport scolaire fonctionne normalement en ce moment. Les exceptions sont indiquées dans la section des avis généraux."); // this is creating some customized settings for the data table
+             
+            settingBus.deferRender = true;
+            settingBus.processing = false;
+            return SetupDataTable(settingBus, "tBusNotifications", "", 100);
+        }
+
+        function SetVisibleLabels()
+        {
+            var General = 0;
+            var bus = 10;
+            var school = 0;
+             
+            if (General === 0 && school === 0 && bus === 0)
+            {
+                $('#MainContent_GeneralNoticesMsg').show();
+                $('#divGeneralNotice').hide();
+                $('#divSchoolAlerts').hide();
+                $('#divBusNotifications').hide();
+            }
+            else{
+                $('#MainContent_GeneralNoticesMsg').hide();
+                if (General > 0 && showGeneralNotices== 'true')
+                {
+                    $('#divGeneralNotice').show();
+                }
+                if (school > 0 && showSchoolAlerts == 'true')
+                {
+                    $('#divSchoolAlerts').show();
+                }
+                if (bus > 0 && showBusNotifications == 'true')
+                {
+                    $('#divBusNotifications').show();
+                }
+            }
+        }
+
+       
+    </script>
+
+
+        <!-- Language specific script files -->
+        <script src="/Scripts/jquery.validate.fr.js"></script>
+<script src="/Scripts/i18n/fr.js"></script>
+
+        
+            
+        </footer>
+    </form>
+    
+    <script>
+        $(document).ready(function ()
+        {
+            $('span.ui-accordion-header-icon').removeClass("ui-icon-triangle-1-e ui-icon-triangle-1-s");
+        });
+
+    </script>
+  
+</body>
+</html>
