@@ -1,6 +1,8 @@
 package schoolscraper
 
 import (
+	"io/ioutil"
+	"net/http"
 	"os"
 	"testing"
 )
@@ -60,4 +62,24 @@ func TestLookupOpenSchool(t *testing.T) {
 	if !result.AllBusesOnTime() {
 		t.Errorf("School with bus status %s should be flagged as having no late buses", result.BusStatus)
 	}
+}
+
+func TestLive(t *testing.T) {
+	resp, err := http.Get(ScheduleURL)
+	if err != nil {
+		panic("Failed1")
+	}
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic("failed2")
+	}
+
+	districtName := "FREDERICTON"
+	schoolName := "École Sainte-Anne"
+	// Scrape the HTML content to extract school property data
+	school, err := GetSchoolStatus(string(body), districtName, schoolName)
+	if err != nil {
+		panic("Failed3")
+	}
+	// fmt.Printf("School is %v", school)
 }
